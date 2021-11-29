@@ -1,0 +1,16 @@
+PODS:
+  - prebid-blocking (0.1.0)
+
+DEPENDENCIES:
+  - prebid-blocking (from `../`)
+
+EXTERNAL SOURCES:
+  prebid-blocking:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  prebid-blocking: ac507864aa5b6768356eea553992d94d8393be08
+
+PODFILE CHECKSUM: c2036af1de2ee4c11369f51a25b7a46fd1463dc7
+
+COCOAPODS: 1.10.1

@@ -1,0 +1,6 @@
+framework module Pods_prebid_blocking_Example {
+  umbrella header "Pods-prebid-blocking_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
