@@ -53,7 +53,7 @@
 @interface PXGlobalConfig : NSObject
 
 @property(nonatomic,copy,readonly) NSString * _Nonnull apiKey;
-@property(nonatomic,copy,readonly) PXBlockingStrategy * _Nonnull strategy;
+@property(nonatomic,readonly) PXBlockingStrategy * _Nonnull strategy;
 @property(nonatomic,readonly) double threshold;
 @property(nonatomic,readonly) double ttl;
 @property(nonatomic,readonly) double timeoutInterval;

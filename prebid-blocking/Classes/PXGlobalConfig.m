@@ -130,8 +130,19 @@ const double PXDefaultTimeoutInterval = 2; // in seconds
     self.timeoutInterval = builder.timeoutInterval;
     self.urlSession = builder.urlSession;
     if( builder.strategy == nil ) {
-        self.strategy = [PXDefaultBlockingStrategy init];
+        PXDefaultBlockingStrategy *defaultStrategy = [[PXDefaultBlockingStrategy alloc] initWithTTL:builder.ttl timeoutInterval:builder.timeoutInterval];
+        self.strategy = defaultStrategy;
     } else {
+        if( [builder.strategy class] == [PXDefaultBlockingStrategy class] ) {
+            PXDefaultBlockingStrategy *strategy = (PXDefaultBlockingStrategy *) builder.strategy;
+            if( strategy.ttl == -1 ) {
+                strategy.ttl = builder.ttl;
+            }
+            
+            if( strategy.timeoutInterval == -1 ) {
+                strategy.timeoutInterval = builder.timeoutInterval;
+            }
+        }
         self.strategy = builder.strategy;
     }
     
@@ -146,7 +157,7 @@ const double PXDefaultTimeoutInterval = 2; // in seconds
     return config;
 }
 
-+(instancetype)makeWithApiKey:(NSString*)apiKey builder:(void (^)(PXGlobalConfigBuilder*))updateBlock {
++(instancetype)makeWithApiKey:(NSString*)apiKey builder:(void (^)(PXGlobalConfigBuilder *builder))updateBlock {
     PXGlobalConfigBuilder *builder = [[PXGlobalConfigBuilder alloc] initWithApiKey:apiKey];
     updateBlock( builder );
     

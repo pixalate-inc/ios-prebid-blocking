@@ -9,14 +9,14 @@
 #ifndef PXBlockingStrategyProtocol_h
 #define PXBlockingStrategyProtocol_h
 
-#define PXBlockingStrategyResultHandler void (^ _Nonnull)(NSString* _Nullable result, NSError * _Nullable error)
+typedef void (^PXBlockingStrategyResultHandler)(NSString* _Nullable result, NSError * _Nullable error);
 
 @protocol PXBlockingStrategyProtocol
 
-- (void) getDeviceId:(PXBlockingStrategyResultHandler)resultHandler;
-- (void) getIPv4Address:(PXBlockingStrategyResultHandler)resultHandler;
-- (void) getIPv6Address:(PXBlockingStrategyResultHandler)resultHandler;
-- (void) getUserAgent:(PXBlockingStrategyResultHandler)resultHandler;
+- (void) getDeviceId:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
+- (void) getIPv4Address:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
+- (void) getIPv6Address:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
+- (void) getUserAgent:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
 
 @end
 

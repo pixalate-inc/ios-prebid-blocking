@@ -10,6 +10,7 @@
 		00205E403FE10C385924AE1C4D798FD3 /* prebid-blocking-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A6F3C1DE49237505593700BCDE253625 /* prebid-blocking-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		08085147326FD1C09F1D8B76359C7F05 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		2596520BD92C770A1B8FCE3001C1ED3B /* Pods-prebid-blocking_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E5E70284E160E0DA1E2217A450027899 /* Pods-prebid-blocking_Tests-dummy.m */; };
+		43AD45962756026700125669 /* PXErrorCodes.h in Headers */ = {isa = PBXBuildFile; fileRef = 43AD45952756026700125669 /* PXErrorCodes.h */; };
 		43F7255F274D910000FB5C62 /* PXBlockingParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F72547274D910000FB5C62 /* PXBlockingParameters.m */; };
 		43F72561274D910000FB5C62 /* PXGlobalConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F72549274D910000FB5C62 /* PXGlobalConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		43F72562274D910000FB5C62 /* PXBlockingStrategyProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 43F7254A274D910000FB5C62 /* PXBlockingStrategyProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -62,6 +63,7 @@
 		2DBD75D52F579713149B9FDD608D4BCA /* Pods-prebid-blocking_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-prebid-blocking_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		30E241EA32506E64E804E7160A809D50 /* Pods-prebid-blocking_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-prebid-blocking_Example-frameworks.sh"; sourceTree = "<group>"; };
 		39B5DC7675F47D3684FE0CE8F248F4C7 /* Pods-prebid-blocking_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-prebid-blocking_Example.modulemap"; sourceTree = "<group>"; };
+		43AD45952756026700125669 /* PXErrorCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXErrorCodes.h; path = "prebid-blocking/Classes/PXErrorCodes.h"; sourceTree = "<group>"; };
 		43F72547274D910000FB5C62 /* PXBlockingParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PXBlockingParameters.m; sourceTree = "<group>"; };
 		43F72549274D910000FB5C62 /* PXGlobalConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXGlobalConfig.h; path = "prebid-blocking/Classes/PXGlobalConfig.h"; sourceTree = "<group>"; };
 		43F7254A274D910000FB5C62 /* PXBlockingStrategyProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PXBlockingStrategyProtocol.h; path = "prebid-blocking/Classes/PXBlockingStrategyProtocol.h"; sourceTree = "<group>"; };
@@ -155,6 +157,7 @@
 				43F7254A274D910000FB5C62 /* PXBlockingStrategyProtocol.h */,
 				43F7254C274D910000FB5C62 /* PXDefaultBlockingStrategy.h */,
 				43F7254D274D910000FB5C62 /* PXDefaultBlockingStrategy.m */,
+				43AD45952756026700125669 /* PXErrorCodes.h */,
 				43F72549274D910000FB5C62 /* PXGlobalConfig.h */,
 				43F7254B274D910000FB5C62 /* PXGlobalConfig.m */,
 				43F72557274D910000FB5C62 /* PXLogLevel.h */,
@@ -303,6 +306,7 @@
 				43F7256C274D910000FB5C62 /* PXTimer.h in Headers */,
 				43F72562274D910000FB5C62 /* PXBlockingStrategyProtocol.h in Headers */,
 				43F72570274D910000FB5C62 /* PXBlockingParameters.h in Headers */,
+				43AD45962756026700125669 /* PXErrorCodes.h in Headers */,
 				43F7256B274D910000FB5C62 /* PXBlockingResult.h in Headers */,
 				43F72573274D910000FB5C62 /* PXBlocking.h in Headers */,
 				43F72564274D910000FB5C62 /* PXDefaultBlockingStrategy.h in Headers */,
@@ -379,7 +383,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1250;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -490,7 +494,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/prebid-blocking/prebid-blocking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/prebid-blocking/prebid-blocking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/prebid-blocking/prebid-blocking.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pixalate.prebid-blocking";
@@ -521,7 +525,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-prebid-blocking_Tests/Pods-prebid-blocking_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-prebid-blocking_Tests/Pods-prebid-blocking_Tests.modulemap";
@@ -591,7 +595,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -619,7 +623,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-prebid-blocking_Example/Pods-prebid-blocking_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-prebid-blocking_Example/Pods-prebid-blocking_Example.modulemap";
@@ -651,7 +655,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/prebid-blocking/prebid-blocking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/prebid-blocking/prebid-blocking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/prebid-blocking/prebid-blocking.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pixalate.prebid-blocking";
@@ -683,7 +687,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-prebid-blocking_Tests/Pods-prebid-blocking_Tests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-prebid-blocking_Tests/Pods-prebid-blocking_Tests.modulemap";
@@ -751,7 +755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -777,7 +781,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-prebid-blocking_Example/Pods-prebid-blocking_Example-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-prebid-blocking_Example/Pods-prebid-blocking_Example.modulemap";

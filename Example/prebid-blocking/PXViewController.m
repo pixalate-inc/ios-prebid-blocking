@@ -7,6 +7,7 @@
 //
 
 #import "PXViewController.h"
+#import <PXBlocking.h>
 
 @interface PXViewController ()
 
@@ -18,6 +19,21 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    NSLog( @"Starting up!" );
+    
+    PXGlobalConfig *config = [PXGlobalConfig makeWithApiKey:@"some-api-key" builder:^(PXGlobalConfigBuilder *builder) {
+        builder.threshold = 0.75;
+        builder.timeoutInterval = 3;
+    }];
+    
+    [PXBlocking setGlobalConfig:config];
+    [PXBlocking setLogLevel:PXLogLevelDebug];
+    
+    [PXBlocking requestBlockStatus:^(BOOL block, NSError * _Nullable error) {
+        NSLog( @"Error: %@", error );
+        NSLog( @"Block: %d", block );
+    }];
 }
 
 - (void)didReceiveMemoryWarning

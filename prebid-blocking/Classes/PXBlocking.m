@@ -6,11 +6,12 @@
 //  Licensed under the GNU LGPL 3.0.
 //
 
-#include <stdlib.h>
+#import <stdlib.h>
 #import "PXBlocking.h"
 #import "PXLogger.h"
 #import "PXBlockingResult.h"
 #import "Private/PXBlockingParameters.h"
+#import "PXErrorCodes.h"
 #import "PXTimer.h"
 
 static NSString *const PXBaseFraudURL      = @"https://dev-api.pixalate.com/api/v2/hosts/rpc/suspect";
@@ -20,7 +21,9 @@ int const PXRetryIntervalsSize = (sizeof PXRetryIntervals) / (sizeof PXRetryInte
 
 @interface PXBlocking ()
 
-- (void)performBlockingRequest:(PXBlockingParameters*)parameters handler:(PXBlockStatusHandler)handler;
++ (void)performBlockingRequest:(PXBlockingParameters*)parameters
+              timeoutRemaining:(double)timeoutRemaining
+                       handler:(PXBlockStatusHandler)handler;
 
 @end
 
@@ -61,91 +64,106 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
                 userInfo:nil];
     }
     
-    __block NSString *deviceId = nil;
-    __block NSString *ipv4 = nil;
-    __block NSString *ipv6 = nil;
-    __block NSString *userAgent = nil;
+    __block PXBlockingParametersBuilder *builder = [[PXBlockingParametersBuilder alloc] init];
     
+    __block double startTime = [[NSDate date] timeIntervalSince1970];
     __block int activityCount = 4;
     
-    __block typeof(self) blockSelf = self;
+    __weak NSTimer *abortTimer = nil;
     
+    [PXLogger logWithFormat:PXLogLevelDebug
+                    message:@"Starting block request: Timeout = %f --- TTL = %f",
+     
+         PXBlocking.globalConfig.timeoutInterval,
+         PXBlocking.globalConfig.ttl
+    ];
     
-    void (^completeActivity)(NSString*) = ^(NSString *debugName) {
-        [PXLogger logWithFormat:PXLogLevelDebug message:@"Completed activity: %@", debugName];
-        activityCount -= 1;
-        
-        if( activityCount == 0 ) {
-            PXBlockingParametersBuilder *builder = [[PXBlockingParametersBuilder alloc] init];
-            builder.deviceId = deviceId;
-            builder.ipv4 = ipv4;
-            builder.ipv6 = ipv6;
-            builder.userAgent = userAgent;
-            
-            PXBlockingParameters *params = [PXBlockingParameters makeWithBuilder:^(PXBlockingParametersBuilder *builder) {
-                builder.deviceId = deviceId;
-                builder.ipv4 = ipv4;
-                builder.ipv6 = ipv6;
-                builder.userAgent = userAgent;
-            }];
+    if( PXBlocking.globalConfig.timeoutInterval > 0 ) {
+        abortTimer = [NSTimer scheduledTimerWithTimeInterval:PXBlocking.globalConfig.timeoutInterval repeats:false block:^(NSTimer *timer) {
             
             activityCount = -1;
             
+            NSDictionary *userInfo = @{
+                NSLocalizedFailureReasonErrorKey: @"Timeout interval reached while attempting to execute the blocking strategy.",
+                NSLocalizedRecoverySuggestionErrorKey: @"You may increase the timeout interval.",
+                NSLocalizedDescriptionKey: @"Blocking Request Aborted"
+            };
+            
+            handler([[NSError alloc] initWithDomain:@"com.pixalate.prebid-block" code:PXBlockingRequestAbortedErrorCode userInfo:userInfo], nil);
+        }];
+    }
+    
+    void (^completeActivity)(void) = ^() {
+        activityCount -= 1;
+        
+        if( activityCount == 0 ) {
+            activityCount = -1;
+            
+            PXBlockingParameters *params = [[PXBlockingParameters alloc] initWithBuilder:builder];
+            
             [PXLogger log:PXLogLevelDebug message:@"All activities completed."];
-            [blockSelf performBlockingRequest:params handler:handler];
+            
+            if( abortTimer != nil ) {
+                [abortTimer invalidate];
+            }
+            
+            double now = [[NSDate date] timeIntervalSince1970];
+            double spent = now - startTime;
+            double remaining = PXBlocking.globalConfig.timeoutInterval - spent;
+            
+            [PXLogger logWithFormat:PXLogLevelDebug message:@"Remaining timeout for request itself:%f", remaining];
+            
+            [PXBlocking performBlockingRequest:params timeoutRemaining:remaining handler:handler];
         }
     };
     
     [PXBlocking.globalConfig.strategy getDeviceId:^(NSString *result, NSError *error) {
         if( error != nil ) {
-            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting device id: %@", error];
+            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting device id, ignoring value: %@", error];
         } else {
             [PXLogger logWithFormat:PXLogLevelDebug message:@"Successfully fetched device id: %@", result];
+            builder.deviceId = result;
         }
         
-        deviceId = result;
-        
-        completeActivity(@"Device ID");
+        completeActivity();
     }];
     
     [PXBlocking.globalConfig.strategy getIPv4Address:^(NSString *result, NSError *error) {
         if( error != nil ) {
-            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting ipv4: %@", error];
+            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting ipv4, ignoring value: %@", error];
         } else {
             [PXLogger logWithFormat:PXLogLevelDebug message:@"Successfully fetched ipv4: %@", result];
+            builder.ipv4 = result;
         }
         
-        ipv4 = result;
-        
-        completeActivity(@"IPv4");
+        completeActivity();
     }];
     
     [PXBlocking.globalConfig.strategy getIPv6Address:^(NSString *result, NSError *error) {
         if( error != nil ) {
-            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting ipv6: %@", error];
+            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting ipv6, ignoring value: %@", error];
         } else {
             [PXLogger logWithFormat:PXLogLevelDebug message:@"Successfully fetched ipv6: %@", result];
+            builder.ipv6 = result;
         }
         
-        ipv6 = result;
-        
-        completeActivity(@"IPv6");
+        completeActivity();
     }];
     
     [PXBlocking.globalConfig.strategy getUserAgent:^(NSString *result, NSError *error) {
         if( error != nil ) {
-            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting user agent: %@", error];
+            [PXLogger logWithFormat:PXLogLevelInfo message:@"Error occurred getting user agent, ignoring value: %@", error];
         } else {
             [PXLogger logWithFormat:PXLogLevelDebug message:@"Successfully fetched user agent: %@", result];
+            builder.userAgent = result;
         }
         
-        userAgent = result;
-        
-        completeActivity(@"User Agent");
+        completeActivity();
     }];
 }
 
-- (void) performBlockingRequest:(PXBlockingParameters*)parameters
++ (void) performBlockingRequest:(PXBlockingParameters*)parameters
+               timeoutRemaining:(double)timeoutRemaining
                         handler:(PXBlockStatusHandler)handler {
     
     PXBlockingResult *result = [blockingCache objectForKey:parameters];
@@ -187,7 +205,7 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     request.HTTPMethod = @"GET";
-    request.timeoutInterval = PXBlocking.globalConfig.timeoutInterval;
+    request.timeoutInterval = timeoutRemaining;
     [request addValue:PXBlocking.globalConfig.apiKey forHTTPHeaderField:@"X-Api-Key"];
     
     NSURLSessionDataTask *task = [PXBlocking.globalConfig.urlSession dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -218,15 +236,16 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
             return;
         }
         
-        NSNumber *probability = json[ @"probability" ];
+        NSNumber *probabilityValue = json[ @"probability" ];
+        double rawProbability = [probabilityValue doubleValue];
         
-        [PXLogger logWithFormat:PXLogLevelDebug message:@"Probability: %@", probability];
+        [PXLogger logWithFormat:PXLogLevelDebug message:@"Probability: %f", rawProbability];
         
-        BOOL res = [probability doubleValue] > PXBlocking.globalConfig.threshold;
+        BOOL res = rawProbability > PXBlocking.globalConfig.threshold;
         
         if( PXBlocking.globalConfig.ttl > 0 ) {
-            [PXLogger logWithFormat:PXLogLevelDebug message:@"Caching blocking result: IPv4: %@ -- IPv6: %@ -- UserAgent: %@ -- DeviceId: %@ -- Probability: %f", parameters.ipv4, parameters.ipv6, parameters.userAgent, parameters.deviceId, probability ];
-            [blockingCache setObject:[PXBlockingResult makeWithProbability:[probability doubleValue]] forKey:[parameters copy]];
+            [PXLogger logWithFormat:PXLogLevelDebug message:@"Caching blocking result: IPv4: %@ -- IPv6: %@ -- UserAgent: %@ -- DeviceId: %@ -- Probability: %f", parameters.ipv4, parameters.ipv6, parameters.userAgent, parameters.deviceId, rawProbability];
+            [blockingCache setObject:[PXBlockingResult makeWithProbability:rawProbability] forKey:[parameters copy]];
         }
         
         handler( res, error );

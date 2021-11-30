@@ -11,11 +11,10 @@
 
 #import <Foundation/Foundation.h>
 
-#import "PXBlockingParameters.h"
 #import "PXGlobalConfig.h"
 #import "PXLogLevel.h"
 
-#define PXBlockStatusHandler void (^ _Nonnull)(BOOL block, NSError * _Nullable error)
+typedef void (^PXBlockStatusHandler)(BOOL block, NSError * _Nullable error);
 
 @interface PXBlocking : NSObject
 
@@ -24,7 +23,7 @@
 + (void)setGlobalConfig:(PXGlobalConfig* _Nonnull)config;
 + (void)setLogLevel:(PXLogLevel)level;
 
-+ (void)requestBlockStatus:(PXBlockStatusHandler)handler;
++ (void)requestBlockStatus:(PXBlockStatusHandler _Nonnull)handler;
 
 @end
 
