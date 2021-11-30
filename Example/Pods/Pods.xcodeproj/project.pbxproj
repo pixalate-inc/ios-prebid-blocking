@@ -477,10 +477,11 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		208EFEFE673150E646B3EC7A685BC23C /* Release */ = {
+		44958002A4C7AFFC787986D39D7F1124 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E0F090BA4A3775AC7F3A5D985F39DC89 /* prebid-blocking.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -492,7 +493,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/prebid-blocking/prebid-blocking-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/prebid-blocking/prebid-blocking-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/prebid-blocking/prebid-blocking.modulemap";
 				PRODUCT_MODULE_NAME = prebid_blocking;
@@ -602,36 +603,6 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
-		};
-		9CCE4F4EA1BC69B0D9EC7DE13780C7E7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 07C3E24309B00818D8DF429C8F801A1A /* prebid-blocking.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/prebid-blocking/prebid-blocking-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/prebid-blocking/prebid-blocking-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/prebid-blocking/prebid-blocking.modulemap";
-				PRODUCT_MODULE_NAME = prebid_blocking;
-				PRODUCT_NAME = prebid_blocking;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		B047487102D54BFBE9282ABEA85785E9 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -800,6 +771,37 @@
 			};
 			name = Release;
 		};
+		F6A41227545D133774B056CC1C72683E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07C3E24309B00818D8DF429C8F801A1A /* prebid-blocking.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/prebid-blocking/prebid-blocking-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/prebid-blocking/prebid-blocking-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/prebid-blocking/prebid-blocking.modulemap";
+				PRODUCT_MODULE_NAME = prebid_blocking;
+				PRODUCT_NAME = prebid_blocking;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -833,8 +835,8 @@
 		C2840FD3CE6E90ED5C8FB1F982921830 /* Build configuration list for PBXNativeTarget "prebid-blocking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9CCE4F4EA1BC69B0D9EC7DE13780C7E7 /* Debug */,
-				208EFEFE673150E646B3EC7A685BC23C /* Release */,
+				F6A41227545D133774B056CC1C72683E /* Debug */,
+				44958002A4C7AFFC787986D39D7F1124 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

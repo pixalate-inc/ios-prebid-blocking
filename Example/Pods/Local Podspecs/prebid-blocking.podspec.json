@@ -17,7 +17,7 @@
   },
   "social_media_url": "https://twitter.com/pixalate",
   "platforms": {
-    "ios": "9.0"
+    "ios": "10.0"
   },
   "source_files": "prebid-blocking/Classes/**/*",
   "public_header_files": "Pod/Classes/*.h",
