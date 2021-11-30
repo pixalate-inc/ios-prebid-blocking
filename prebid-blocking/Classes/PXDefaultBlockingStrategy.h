@@ -21,10 +21,10 @@
 - (instancetype _Nonnull) initWithTTL:(double)ttl;
 - (instancetype _Nonnull) initWithTTL:(double)ttl timeoutInterval:(double)timeoutInterval;
 
-- (void) getDeviceIdImpl:(PXBlockingStrategyResultHandler)resultHandler;
-- (void) getIPv4AddressImpl:(PXBlockingStrategyResultHandler)resultHandler;
-- (void) getIPv6AddressImpl:(PXBlockingStrategyResultHandler)resultHandler;
-- (void) getUserAgentImpl:(PXBlockingStrategyResultHandler)resultHandler;
+- (void) getDeviceIdImpl:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
+- (void) getIPv4AddressImpl:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
+- (void) getIPv6AddressImpl:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
+- (void) getUserAgentImpl:(PXBlockingStrategyResultHandler _Nonnull)resultHandler;
 
 @end
 
