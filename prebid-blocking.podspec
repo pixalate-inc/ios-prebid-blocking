@@ -4,7 +4,7 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'pixalate-prebid-blocking'
+  s.name             = 'prebid-blocking'
   s.version          = '0.1.0'
   s.summary          = "Block high-IVT probable impressions in your mobile apps by utilizing Pixalate's Pre-Bid Blocking API."
 
