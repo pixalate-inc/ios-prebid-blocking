@@ -1,6 +1,0 @@
-framework module prebid_blocking {
-  umbrella header "prebid-blocking-umbrella.h"
-
-  export *
-  module * { export * }
-}

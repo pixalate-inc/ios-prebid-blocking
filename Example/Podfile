@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '10.0'
 
 target 'prebid-blocking_Example' do
-  pod 'prebid-blocking', :path => '../'
+  pod 'pixalate-prebid-blocking', :path => '../'
   pod 'mopub-ios-sdk', '~> 5.13'
 
   target 'prebid-blocking_Tests' do

@@ -1,5 +1,5 @@
 //
-//  Pixalate.h
+//  PXBlocking.h
 //  pixalate-prebid-blocking
 //
 //  Copyright © 2021 Pixalate, Inc.
@@ -14,6 +14,8 @@
 #import "PXGlobalConfig.h"
 #import "PXLogLevel.h"
 #import "PXBlockingMode.h"
+#import "PXBlockingStrategyProtocol.h"
+#import "PXDefaultBlockingStrategy.h"
 
 typedef void (^PXBlockStatusHandler)(BOOL block, NSError * _Nullable error);
 

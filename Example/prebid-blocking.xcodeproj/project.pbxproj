@@ -349,13 +349,13 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-prebid-blocking_Example/Pods-prebid-blocking_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/mopub-ios-sdk/MoPubSDK.framework",
-				"${BUILT_PRODUCTS_DIR}/prebid-blocking/prebid_blocking.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/OMSDK_Mopub/OMSDK_Mopub.framework/OMSDK_Mopub",
+				"${BUILT_PRODUCTS_DIR}/pixalate-prebid-blocking/pixalate_prebid_blocking.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/mopub-ios-sdk/Core/OMSDK_Mopub.framework/OMSDK_Mopub",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MoPubSDK.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/prebid_blocking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/pixalate_prebid_blocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OMSDK_Mopub.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

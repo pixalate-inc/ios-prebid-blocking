@@ -7,24 +7,24 @@ PODS:
     - mopub-ios-sdk/NativeAds
   - mopub-ios-sdk/NativeAds (5.18.2):
     - mopub-ios-sdk/Core
-  - prebid-blocking (0.1.0)
+  - pixalate-prebid-blocking (0.1.0)
 
 DEPENDENCIES:
   - mopub-ios-sdk (~> 5.13)
-  - prebid-blocking (from `../`)
+  - pixalate-prebid-blocking (from `../`)
 
 SPEC REPOS:
   trunk:
     - mopub-ios-sdk
 
 EXTERNAL SOURCES:
-  prebid-blocking:
+  pixalate-prebid-blocking:
     :path: "../"
 
 SPEC CHECKSUMS:
   mopub-ios-sdk: 39dd404dc791e543979b91aa8e3b27197af91377
-  prebid-blocking: f13671acac0918afd8e64ebd7d16865c963fe92e
+  pixalate-prebid-blocking: ac0a6337441337082d45fbda45e837117e16ac72
 
-PODFILE CHECKSUM: 401516a01e5b492227816b359f3e6f5fa54f1c0c
+PODFILE CHECKSUM: faebac4c1927dcca39f8131527334cc45e7fca5e
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

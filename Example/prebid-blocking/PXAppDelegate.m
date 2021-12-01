@@ -7,7 +7,7 @@
 //
 
 #import "PXAppDelegate.h"
-#import <PXBlocking.h>
+#import <PXBlocking/PXBlocking.h>
 #import <MoPubSDK/MoPub.h>
 
 @implementation PXAppDelegate

@@ -25,16 +25,16 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/Pixalate/prebid-blocking.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/pixalate'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
 
-  s.source_files = 'prebid-blocking/Classes/**/*'
+  s.source_files = 'pixalate-prebid-blocking/**/*'
   
   # s.resource_bundles = {
   #   'prebid-blocking' => ['prebid-blocking/Assets/*.png']
   # }
 
-  s.public_header_files = 'Pod/Classes/*.h'
-  s.private_header_files = 'Pos/Classes/Private/*.h'
+  s.public_header_files = 'pixalate-prebid-blocking/*.h'
+  s.private_header_files = 'pixalate-prebid-blocking/Private/*.h'
    s.frameworks = 'Foundation'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

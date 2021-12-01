@@ -1,0 +1,6 @@
+framework module pixalate_prebid_blocking {
+  umbrella header "pixalate-prebid-blocking-umbrella.h"
+
+  export *
+  module * { export * }
+}

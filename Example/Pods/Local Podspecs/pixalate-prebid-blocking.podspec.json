@@ -17,10 +17,10 @@
   },
   "social_media_url": "https://twitter.com/pixalate",
   "platforms": {
-    "ios": "9.0"
+    "ios": "10.0"
   },
-  "source_files": "prebid-blocking/Classes/**/*",
-  "public_header_files": "Pod/Classes/*.h",
-  "private_header_files": "Pos/Classes/Private/*.h",
+  "source_files": "pixalate-prebid-blocking/**/*",
+  "public_header_files": "pixalate-prebid-blocking/*.h",
+  "private_header_files": "pixalate-prebid-blocking/Private/*.h",
   "frameworks": "Foundation"
 }

@@ -192,7 +192,7 @@ Library.</string>
 			<key>License</key>
 			<string>LGPL</string>
 			<key>Title</key>
-			<string>prebid-blocking</string>
+			<string>pixalate-prebid-blocking</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>

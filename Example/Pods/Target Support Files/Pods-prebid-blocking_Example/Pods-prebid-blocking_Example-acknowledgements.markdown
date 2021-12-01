@@ -5,7 +5,7 @@ This application makes use of the following third party libraries:
 
 The MoPub SDK License can be found at http://www.mopub.com/legal/sdk-license-agreement/
 
-## prebid-blocking
+## pixalate-prebid-blocking
 
                    GNU LESSER GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007

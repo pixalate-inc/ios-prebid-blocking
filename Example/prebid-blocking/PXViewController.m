@@ -7,7 +7,7 @@
 //
 
 #import "PXViewController.h"
-#import <PXBlocking.h>
+#import <PXBlocking/PXBlocking.h>
 #import <MoPubSDK/MoPub.h>
 
 NSString* const APP_UNIT_ID = @"0ac59b0996d947309c33f59d6676399f";

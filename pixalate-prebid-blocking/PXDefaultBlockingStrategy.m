@@ -1,6 +1,6 @@
 //
 //  PXDefaultBlockingStrategy.m
-//  pixalate-prebid
+//  pixalate-prebid-blocking
 //
 //  Created by Pixalate on 11/17/21.
 //  Copyright © 2021 Pixalate. All rights reserved.

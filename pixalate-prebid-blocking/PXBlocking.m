@@ -1,5 +1,5 @@
 //
-//  Pixalate.m
+//  PXBlocking.m
 //  pixalate-prebid-blocking
 //
 //  Copyright © 2021 Pixalate, Inc.
@@ -15,9 +15,6 @@
 #import "PXTimer.h"
 
 static NSString *const PXBaseFraudURL      = @"https://dev-api.pixalate.com/api/v2/hosts/rpc/suspect";
-
-NSTimeInterval const PXRetryIntervals[] = { 1, 2, 4, 8, 16 };
-int const PXRetryIntervalsSize = (sizeof PXRetryIntervals) / (sizeof PXRetryIntervals[0]);
 
 @interface PXBlocking ()
 
@@ -57,6 +54,10 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
 }
 
 + (void)requestBlockStatus:(PXBlockStatusHandler)handler {
+    [self requestBlockStatusWithBlockingMode:PXBlockingModeDefault handler:handler];
+}
+
++ (void)requestBlockStatusWithBlockingMode:(PXBlockingMode)mode handler:(PXBlockStatusHandler)handler {
     if( PXBlocking.globalConfig == nil ) {
         @throw [[NSException alloc]
                 initWithName:@"PXInvalidStateException"
@@ -113,7 +114,13 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
             
             [PXLogger logWithFormat:PXLogLevelDebug message:@"Remaining timeout for request itself:%f", remaining];
             
-            [PXBlocking performBlockingRequest:params timeoutRemaining:remaining handler:handler];
+            if( mode == PXBlockingModeDefault ) {
+                [PXBlocking performBlockingRequest:params timeoutRemaining:remaining handler:handler];
+            } else if( mode == PXBlockingModeAlwaysBlock ) {
+                handler(true,nil);
+            } else if( mode == PXBlockingModeNeverBlock ) {
+                handler(false,nil);
+            }
         }
     };
     

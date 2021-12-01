@@ -9,7 +9,7 @@
 #import "PXGlobalConfig.h"
 #import "PXDefaultBlockingStrategy.h"
 
-const int PXDefaultCacheAge = 60 * 60 * 8; // 8 hours in seconds
+const int    PXDefaultCacheAge = 60 * 60 * 8; // 8 hours in seconds
 const double PXDefaultThreshold = 0.75;
 const double PXDefaultTimeoutInterval = 2; // in seconds
 
