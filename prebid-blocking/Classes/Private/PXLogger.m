@@ -24,7 +24,7 @@ static PXLogLevel logLevel;
         va_start( args, message );
         
         NSString* str = [[NSString alloc] initWithFormat:message arguments:args];
-        NSLog( @"Pixalate: %@", str );
+        NSLog( @"PXBlocking: %@", str );
         
         va_end( args );
     }
@@ -32,7 +32,7 @@ static PXLogLevel logLevel;
 
 + (void)log:(PXLogLevel)level message:(NSString* _Nullable)message {
     if( level > 0 && level <= logLevel ) {
-        NSLog(@"Pixalate: %@", message);
+        NSLog(@"PXBlocking: %@", message);
     }
 }
 

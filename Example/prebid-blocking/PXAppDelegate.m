@@ -7,12 +7,21 @@
 //
 
 #import "PXAppDelegate.h"
+#import <PXBlocking.h>
+#import <MoPubSDK/MoPub.h>
 
 @implementation PXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    PXGlobalConfig *pxConfig = [PXGlobalConfig makeWithApiKey:@"4kg9vQTEEnQRA327kZEKanHHmOZ41NYF" builder:^(PXGlobalConfigBuilder *builder) {
+        builder.threshold = 0.75;
+        builder.timeoutInterval = 3;
+    }];
+
+    [PXBlocking setGlobalConfig:pxConfig];
+    [PXBlocking setLogLevel:PXLogLevelDebug];
+    
     return YES;
 }
 

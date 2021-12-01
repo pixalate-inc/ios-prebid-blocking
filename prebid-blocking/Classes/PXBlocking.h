@@ -13,6 +13,7 @@
 
 #import "PXGlobalConfig.h"
 #import "PXLogLevel.h"
+#import "PXBlockingMode.h"
 
 typedef void (^PXBlockStatusHandler)(BOOL block, NSError * _Nullable error);
 
@@ -23,6 +24,7 @@ typedef void (^PXBlockStatusHandler)(BOOL block, NSError * _Nullable error);
 + (void)setGlobalConfig:(PXGlobalConfig* _Nonnull)config;
 + (void)setLogLevel:(PXLogLevel)level;
 
++ (void)requestBlockStatusWithBlockingMode:(PXBlockingMode)mode handler:(PXBlockStatusHandler _Nonnull)handler;
 + (void)requestBlockStatus:(PXBlockStatusHandler _Nonnull)handler;
 
 @end

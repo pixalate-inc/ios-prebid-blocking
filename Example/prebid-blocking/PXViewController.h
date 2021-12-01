@@ -6,8 +6,15 @@
 //  Copyright (c) 2021 Pixalate. All rights reserved.
 //
 
+#import <MoPubSDK/MPAdView.h>
+
 @import UIKit;
 
-@interface PXViewController : UIViewController
+@interface PXViewController : UIViewController <MPAdViewDelegate>
+
+-(UIViewController *)viewControllerForPresentingModalView;
+-(void)adViewDidLoadAd:(MPAdView *)view adSize:(CGSize)adSize;
+
+-(void)loadAd;
 
 @end

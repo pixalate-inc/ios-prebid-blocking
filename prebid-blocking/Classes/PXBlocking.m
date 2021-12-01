@@ -57,6 +57,10 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
 }
 
 + (void)requestBlockStatus:(PXBlockStatusHandler)handler {
+    [self requestBlockStatusWithBlockingMode:PXBlockingModeDefault handler:handler];
+}
+
++ (void)requestBlockStatusWithBlockingMode:(PXBlockingMode)mode handler:(PXBlockStatusHandler)handler {
     if( PXBlocking.globalConfig == nil ) {
         @throw [[NSException alloc]
                 initWithName:@"PXInvalidStateException"
@@ -113,7 +117,13 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
             
             [PXLogger logWithFormat:PXLogLevelDebug message:@"Remaining timeout for request itself:%f", remaining];
             
-            [PXBlocking performBlockingRequest:params timeoutRemaining:remaining handler:handler];
+            if( mode == PXBlockingModeDefault ) {
+                [PXBlocking performBlockingRequest:params timeoutRemaining:remaining handler:handler];
+            } else if( mode == PXBlockingModeAlwaysBlock ) {
+                handler(true,nil);
+            } else if( mode == PXBlockingModeNeverBlock ) {
+                handler(false,nil);
+            }
         }
     };
     

@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## mopub-ios-sdk
+
+The MoPub SDK License can be found at http://www.mopub.com/legal/sdk-license-agreement/
+
 ## prebid-blocking
 
                    GNU LESSER GENERAL PUBLIC LICENSE

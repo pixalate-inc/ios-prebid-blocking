@@ -1,16 +1,30 @@
 PODS:
+  - mopub-ios-sdk (5.18.2):
+    - mopub-ios-sdk/MoPubSDK (= 5.18.2)
+  - mopub-ios-sdk/Core (5.18.2)
+  - mopub-ios-sdk/MoPubSDK (5.18.2):
+    - mopub-ios-sdk/Core
+    - mopub-ios-sdk/NativeAds
+  - mopub-ios-sdk/NativeAds (5.18.2):
+    - mopub-ios-sdk/Core
   - prebid-blocking (0.1.0)
 
 DEPENDENCIES:
+  - mopub-ios-sdk (~> 5.13)
   - prebid-blocking (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - mopub-ios-sdk
 
 EXTERNAL SOURCES:
   prebid-blocking:
     :path: "../"
 
 SPEC CHECKSUMS:
+  mopub-ios-sdk: 39dd404dc791e543979b91aa8e3b27197af91377
   prebid-blocking: f13671acac0918afd8e64ebd7d16865c963fe92e
 
-PODFILE CHECKSUM: aa2b355b70cfa98479bc32a09b8ad2c84f0629db
+PODFILE CHECKSUM: 401516a01e5b492227816b359f3e6f5fa54f1c0c
 
 COCOAPODS: 1.10.1
