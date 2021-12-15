@@ -2,17 +2,26 @@
 //  PXAppDelegate.m
 //  prebid-blocking
 //
-//  Created by Madgvox on 11/23/2021.
-//  Copyright (c) 2021 Madgvox. All rights reserved.
+//  Created by Pixalate on 11/23/2021.
+//  Copyright (c) 2021 Pixalate. All rights reserved.
 //
 
 #import "PXAppDelegate.h"
+#import <PXBlocking/PXBlocking.h>
+#import <MoPubSDK/MoPub.h>
 
 @implementation PXAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    PXGlobalConfig *pxConfig = [PXGlobalConfig makeWithApiKey:@"4kg9vQTEEnQRA327kZEKanHHmOZ41NYF" builder:^(PXGlobalConfigBuilder *builder) {
+        builder.threshold = 0.75;
+        builder.timeoutInterval = 3;
+    }];
+
+    [PXBlocking setGlobalConfig:pxConfig];
+    [PXBlocking setLogLevel:PXLogLevelDebug];
+    
     return YES;
 }
 

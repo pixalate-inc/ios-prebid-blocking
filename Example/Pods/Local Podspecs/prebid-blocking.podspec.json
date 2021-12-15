@@ -1,0 +1,26 @@
+{
+  "name": "prebid-blocking",
+  "version": "0.1.0",
+  "summary": "Block high-IVT probable impressions in your mobile apps by utilizing Pixalate's Pre-Bid Blocking API.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Pixalate/prebid-blocking",
+  "license": {
+    "type": "LGPL",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Pixalate": "nate@pixalate.com"
+  },
+  "source": {
+    "git": "https://github.com/Pixalate/prebid-blocking.git",
+    "tag": "0.1.0"
+  },
+  "social_media_url": "https://twitter.com/pixalate",
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "prebid-blocking/Classes/**/*",
+  "public_header_files": "Pod/Classes/*.h",
+  "private_header_files": "Pos/Classes/Private/*.h",
+  "frameworks": "Foundation"
+}

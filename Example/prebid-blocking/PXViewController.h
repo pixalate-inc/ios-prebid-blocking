@@ -2,12 +2,19 @@
 //  PXViewController.h
 //  prebid-blocking
 //
-//  Created by Madgvox on 11/23/2021.
-//  Copyright (c) 2021 Madgvox. All rights reserved.
+//  Created by Pixalate on 11/23/2021.
+//  Copyright (c) 2021 Pixalate. All rights reserved.
 //
+
+#import <MoPubSDK/MPAdView.h>
 
 @import UIKit;
 
-@interface PXViewController : UIViewController
+@interface PXViewController : UIViewController <MPAdViewDelegate>
+
+-(UIViewController *)viewControllerForPresentingModalView;
+-(void)adViewDidLoadAd:(MPAdView *)view adSize:(CGSize)adSize;
+
+-(void)loadAd;
 
 @end
