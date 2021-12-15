@@ -12,9 +12,8 @@
 #import "PXBlockingResult.h"
 #import "Private/PXBlockingParameters.h"
 #import "PXErrorCodes.h"
-#import "PXTimer.h"
 
-static NSString *const PXBaseFraudURL      = @"https://dev-api.pixalate.com/api/v2/hosts/rpc/suspect";
+static NSString *const PXBaseFraudURL = @"https://dev-api.pixalate.com/api/v2/hosts/rpc/suspect";
 
 @interface PXBlocking ()
 
@@ -90,7 +89,7 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
                 NSLocalizedDescriptionKey: @"Blocking Request Aborted"
             };
             
-            handler([[NSError alloc] initWithDomain:@"com.pixalate.prebid-block" code:PXBlockingRequestAbortedErrorCode userInfo:userInfo], nil);
+            handler(false, [[NSError alloc] initWithDomain:@"com.pixalate.prebid-block" code:PXBlockingRequestAbortedErrorCode userInfo:userInfo]);
         }];
     }
     
