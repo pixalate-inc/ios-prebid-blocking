@@ -14,7 +14,7 @@
 #import "PXGlobalConfig.h"
 #import <Foundation/Foundation.h>
 
-NSString *const PXBaseIPv4URL = @"https://get-ipv4.adrta.com";
+NSString *const PXBaseIPv4URL = @"https://get-ipv4.adrta.com/ipv4";
 
 @interface PXDefaultBlockingStrategy ()
 

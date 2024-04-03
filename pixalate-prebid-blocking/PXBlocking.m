@@ -13,7 +13,7 @@
 #import "Private/PXBlockingParameters.h"
 #import "PXErrorCodes.h"
 
-static NSString *const PXBaseFraudURL = @"https://dev-api.pixalate.com/api/v2/hosts/rpc/suspect";
+static NSString *const PXBaseFraudURL = @"https://fraud-api.pixalate.com/api/v2/fraud";
 
 @interface PXBlocking ()
 
@@ -200,7 +200,7 @@ static NSCache<PXBlockingParameters*,PXBlockingResult*>* blockingCache;
         [items addObject:[[NSURLQueryItem alloc] initWithName:@"ip" value:parameters.ipv4]];
     }
     if( parameters.ipv6 != nil ) {
-        [PXLogger log:PXLogLevelInfo message:@"Warning: IPv6 is not yet supported, so the passed IPv6 value will not be used."];
+        [items addObject:[[NSURLQueryItem alloc] initWithName:@"ip" value:parameters.ipv6]];
     }
     
     [urlBuilder setQueryItems:items];
